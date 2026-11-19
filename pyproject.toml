@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "anchor-integration"
+description = "Home Assistant integration that exposes Anchor notes as to-do lists"
+authors = ["Felix Schneider <mail@fschneider.me>"]
+repository = "https://github.com/felixschndr/ha-anchor-integration"
+package-mode = false
+# The version lives in custom_components/anchor/manifest.json (the Marketplace reads it from there).
+
+[tool.poetry.dependencies]
+python = ">=3.14.2,<4.0"
+
+[tool.poetry.group.dev.dependencies]
+# Pins the matching homeassistant version, so bump this to test against a newer Home Assistant.
+pytest-homeassistant-custom-component = "0.13.375"
+pytest-cov = "^7.1.0"
+# Imported directly. Home Assistant provides them at runtime and the package above pins their versions.
+homeassistant = "*"
+aiohttp = "*"
+probatio = "*"
+yarl = "*"
+pytest = "*"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+log_level = "INFO"
+
+[tool.coverage.run]
+branch = true
+
+[tool.isort]
+profile = "black"
+line_length = 120
+src_paths = ["custom_components", "scripts", "tests"]
+
+[tool.bandit]
+exclude_dirs = [".venv"]
+skips = ["B101"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["custom_components/anchor"]
+pythonVersion = "3.14"

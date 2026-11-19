@@ -1,0 +1,14 @@
+.idea
+.env
+.venv/
+**/__pycache__/
+
+# Ignore MacOS hidden files
+**/._*
+**/.DS_Store
+
+# pytest-cov
+.coverage
+htmlcov/
+coverage.xml
+coverage.json
