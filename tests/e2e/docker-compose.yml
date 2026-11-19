@@ -1,0 +1,10 @@
+# Anchor server for the end-to-end tests. Dependabot bumps the tag on every Anchor release, so the pipeline tests it.
+services:
+  anchor:
+    image: ghcr.io/zhfahim/anchor:0.18.1
+    ports:
+      - 127.0.0.1:3999:3000
+    environment:
+      PG_USER: anchor
+      PG_PASSWORD: password
+      PG_DATABASE: anchor

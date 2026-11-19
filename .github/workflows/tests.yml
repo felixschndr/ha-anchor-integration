@@ -29,20 +29,14 @@ jobs:
         run: poetry run python scripts/checks/check_coverage.py
 
   # The integration in a real Home Assistant core (pytest-homeassistant-custom-component) against a real Anchor server.
+  # The Anchor version is pinned in tests/e2e/docker-compose.yml; Dependabot opens a PR for every Anchor release.
   e2e:
     runs-on: ubuntu-latest
-    services:
-      anchor:
-        # Deliberately unpinned as this job exists to notice when a new Anchor release breaks the integration.
-        image: ghcr.io/zhfahim/anchor:latest
-        ports:
-          - 3000:3000
-        env:
-          PG_USER: anchor
-          PG_PASSWORD: password
-          PG_DATABASE: anchor
     steps:
       - uses: actions/checkout@v7.0.1
+
+      - name: Start Anchor
+        run: docker compose -f tests/e2e/docker-compose.yml up -d
 
       - uses: actions/setup-python@v7.1.0
         with:
@@ -55,9 +49,9 @@ jobs:
         run: poetry install --no-interaction --no-root
 
       - name: Wait for Anchor
-        run: timeout 180 bash -c 'until curl -sf http://127.0.0.1:3000/api/health; do sleep 2; done'
+        run: timeout 180 bash -c 'until curl -sf http://127.0.0.1:3999/api/health; do sleep 2; done'
 
       - name: Run end-to-end tests
         run: poetry run pytest tests/e2e -rs
         env:
-          ANCHOR_E2E_URL: http://127.0.0.1:3000
+          ANCHOR_E2E_URL: http://127.0.0.1:3999

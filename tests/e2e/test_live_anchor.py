@@ -1,8 +1,7 @@
 """The integration in a real Home Assistant core against a real Anchor server.
 
-Start Anchor (see the e2e job in .github/workflows/tests.yml) and set ANCHOR_E2E_URL, e.g.
-    docker run --rm -p 127.0.0.1:3999:3000 -e PG_USER=anchor -e PG_PASSWORD=password -e PG_DATABASE=anchor \
-        ghcr.io/zhfahim/anchor:latest
+Start Anchor and set ANCHOR_E2E_URL:
+    docker compose -f tests/e2e/docker-compose.yml up -d
     ANCHOR_E2E_URL=http://127.0.0.1:3999 poetry run pytest tests/e2e
 """
 
