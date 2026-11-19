@@ -46,7 +46,6 @@ class AnchorTodoList(CoordinatorEntity[AnchorNoteCoordinator], TodoListEntity): 
             identifiers={(DOMAIN, coordinator.note_id)},
             name=subentry.title,
             manufacturer="Anchor",
-            model="Note",
             via_device_id=server_id,
         )
 
