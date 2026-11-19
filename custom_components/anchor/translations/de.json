@@ -1,0 +1,70 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Anchor-Server",
+        "description": "Gib die Adresse ein, mit der du Anchor im Browser öffnest. Notizen fügst du danach auf der Seite der Integration hinzu.",
+        "data": {
+          "url": "URL"
+        },
+        "data_description": {
+          "url": "Zum Beispiel {example_url}"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unter dieser URL antwortet kein Anchor-Server."
+    },
+    "abort": {
+      "already_configured": "Dieser Anchor-Server ist bereits eingerichtet."
+    }
+  },
+  "config_subentries": {
+    "note": {
+      "entry_type": "Notiz",
+      "initiate_flow": {
+        "user": "Notiz hinzufügen",
+        "reconfigure": "API-Token ändern"
+      },
+      "step": {
+        "user": {
+          "title": "Anchor-Benutzer",
+          "description": "Erstelle in Anchor unter Einstellungen ein API-Token und füge es hier ein.",
+          "data": {
+            "token": "API-Token"
+          }
+        },
+        "note": {
+          "title": "Notiz auswählen",
+          "description": "Jede Checkbox-Zeile der Notiz wird zu einem Todo. Alle anderen Zeilen bleiben unverändert.",
+          "data": {
+            "note_id": "Notiz"
+          }
+        },
+        "reconfigure": {
+          "title": "API-Token ändern",
+          "description": "Füge ein neues API-Token für die Notiz „{note}“ ein, zum Beispiel nachdem es in Anchor neu erzeugt wurde.",
+          "data": {
+            "token": "API-Token"
+          }
+        }
+      },
+      "error": {
+        "cannot_connect": "Der Anchor-Server ist nicht erreichbar.",
+        "invalid_auth": "Anchor hat das API-Token abgelehnt.",
+        "no_notes": "Dieser Benutzer hat keine bearbeitbaren Notizen, die noch nicht hinzugefügt sind.",
+        "no_checkboxes": "Diese Notiz hat keine Checkbox-Zeilen. Wähle eine andere oder füge in Anchor zuerst eine Checkbox hinzu.",
+        "note_not_accessible": "Der Benutzer dieses Tokens darf diese Notiz nicht bearbeiten."
+      },
+      "abort": {
+        "already_configured": "Diese Notiz ist bereits hinzugefügt."
+      }
+    }
+  },
+  "issues": {
+    "invalid_token": {
+      "title": "Anchor hat das API-Token der Notiz „{note}“ abgelehnt",
+      "description": "Das Token wurde vermutlich in Anchor neu erzeugt oder widerrufen. Öffne die Anchor-Integration, wähle ⋮ neben der Notiz „{note}“, dann **API-Token ändern**, und füge ein aktuelles Token ein. Alle Notizen desselben Benutzers bekommen das neue Token."
+    }
+  }
+}

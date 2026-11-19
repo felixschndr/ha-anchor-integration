@@ -1,0 +1,70 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Anchor server",
+        "description": "Enter the address you open Anchor with in the browser. Notes are added afterwards on the integration page.",
+        "data": {
+          "url": "URL"
+        },
+        "data_description": {
+          "url": "For example {example_url}"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "No Anchor server answered at this URL."
+    },
+    "abort": {
+      "already_configured": "This Anchor server is already set up."
+    }
+  },
+  "config_subentries": {
+    "note": {
+      "entry_type": "Note",
+      "initiate_flow": {
+        "user": "Add note",
+        "reconfigure": "Change API token"
+      },
+      "step": {
+        "user": {
+          "title": "Anchor user",
+          "description": "Create an API token in Anchor under Settings and paste it here.",
+          "data": {
+            "token": "API token"
+          }
+        },
+        "note": {
+          "title": "Pick a note",
+          "description": "Every checkbox line of the note becomes a to-do item. All other lines stay untouched.",
+          "data": {
+            "note_id": "Note"
+          }
+        },
+        "reconfigure": {
+          "title": "Change API token",
+          "description": "Paste a new API token for the note “{note}”, for example after it was regenerated in Anchor.",
+          "data": {
+            "token": "API token"
+          }
+        }
+      },
+      "error": {
+        "cannot_connect": "The Anchor server is not reachable.",
+        "invalid_auth": "Anchor rejected the API token.",
+        "no_notes": "This user has no notes they can edit that aren't added yet.",
+        "no_checkboxes": "This note has no checkbox lines. Pick another one or add a checkbox in Anchor first.",
+        "note_not_accessible": "This token's user can't edit this note."
+      },
+      "abort": {
+        "already_configured": "This note is already added."
+      }
+    }
+  },
+  "issues": {
+    "invalid_token": {
+      "title": "Anchor rejected the API token of the note “{note}”",
+      "description": "The token was probably regenerated or revoked in Anchor. Open the Anchor integration, select ⋮ next to the note “{note}”, choose **Change API token** and paste a current token. All notes of the same user get the new token."
+    }
+  }
+}
