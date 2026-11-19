@@ -1,6 +1,7 @@
 {
   "domain": "anchor",
   "name": "Anchor",
+  "categories": ["productivity_information.calendars_todos"],
   "codeowners": ["@felixschndr"],
   "config_flow": true,
   "documentation": "https://github.com/felixschndr/ha-anchor-integration",
