@@ -1,0 +1,12 @@
+[flake8]
+extend-ignore = ANN101, ANN102, ANN204, ANN401, B008, B904, B907, E501, E704
+max-line-length = 120
+max-complexity = 18
+suppress-non-returning = true
+kwargs-ignore-function-pattern-extend = (options|load_only|replace|pop|get|insert|debug|info|warning|error|exception|parametrize)$
+per-file-ignores =
+    tests/*:ANN201, FKA100
+    test_*:ANN201
+    scripts/*:FKA100, E402
+extend-exclude =
+    .venv/
