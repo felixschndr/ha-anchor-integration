@@ -1,0 +1,12 @@
+{
+  "domain": "anchor",
+  "name": "Anchor",
+  "codeowners": ["@felixschndr"],
+  "config_flow": true,
+  "documentation": "https://github.com/felixschndr/ha-anchor-integration",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/felixschndr/ha-anchor-integration/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
