@@ -1,0 +1,71 @@
+name: Pipeline that checks and releases the integration
+
+on:
+  # Single CI entry point
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  tests:
+    uses: ./.github/workflows/tests.yml
+
+  validate:
+    uses: ./.github/workflows/validate.yml
+
+  check_version:
+    uses: ./.github/workflows/check-version.yml
+
+  # The Marketplace installs GitHub releases, and their tag must match the version in manifest.json.
+  release:
+    needs: [check_version, lint, tests, validate]
+    if: github.event_name == 'push' && needs.check_version.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.check_version.outputs.bump_sha }}
+
+      - name: Get last release tag
+        id: get_last_release
+        run: |
+          last_tag=$(git tag --sort=-version:refname | head -n1)
+          echo "last_tag=$last_tag" >> $GITHUB_OUTPUT
+          echo "Last release tag: $last_tag"
+
+      - name: Get commit log since last release
+        id: get_commit_log
+        run: |
+          last_tag="${{ steps.get_last_release.outputs.last_tag }}"
+          if [[ -z "${last_tag}" ]]; then
+            commit_log=$(git log --pretty=format:"- %h %s")
+          else
+            commit_log=$(git log ${last_tag}..HEAD --pretty=format:"- %h %s")
+          fi
+          echo "commit_log<<EOF" >> $GITHUB_ENV
+          echo "${commit_log}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3.0.4
+        with:
+          tag_name: ${{ needs.check_version.outputs.current_version }}
+          target_commitish: ${{ needs.check_version.outputs.bump_sha }}
+          name: Release ${{ needs.check_version.outputs.current_version }}
+          body: ${{ env.commit_log }}
