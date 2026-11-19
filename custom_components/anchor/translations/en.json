@@ -66,5 +66,10 @@
       "title": "Anchor rejected the API token of the note “{note}”",
       "description": "The token was probably regenerated or revoked in Anchor. Open the Anchor integration, select ⋮ next to the note “{note}”, choose **Change API token** and paste a current token. All notes of the same user get the new token."
     }
+  },
+  "device": {
+    "server": {
+      "name": "Anchor server"
+    }
   }
 }

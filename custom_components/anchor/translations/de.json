@@ -66,5 +66,10 @@
       "title": "Anchor hat das API-Token der Notiz „{note}“ abgelehnt",
       "description": "Das Token wurde vermutlich in Anchor neu erzeugt oder widerrufen. Öffne die Anchor-Integration, wähle ⋮ neben der Notiz „{note}“, dann **API-Token ändern**, und füge ein aktuelles Token ein. Alle Notizen desselben Benutzers bekommen das neue Token."
     }
+  },
+  "device": {
+    "server": {
+      "name": "Anchor-Server"
+    }
   }
 }

@@ -33,7 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AnchorConfigEntry) -> bo
     dr.async_get(hass).async_get_or_create(
         config_entry_id=entry.entry_id,
         identifiers={(DOMAIN, entry.entry_id)},
-        name=entry.title,
+        translation_key="server",
         manufacturer="Anchor",
         sw_version=health.get("version"),
         configuration_url=entry.data[CONF_URL],

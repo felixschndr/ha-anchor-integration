@@ -82,6 +82,7 @@ async def test_setup_creates_device_and_list(
     devices = dr.async_get(hass)
     server_device = devices.async_get_device_by_identifier((DOMAIN, config_entry.entry_id), config_entry.entry_id)
     assert server_device.sw_version == "0.18.1"
+    assert server_device.name == "Anchor server"
     note_device = devices.async_get(er.async_get(hass).async_get(entity_id).device_id)
     assert note_device.name == "Groceries"
     assert note_device.via_device_id == server_device.id
