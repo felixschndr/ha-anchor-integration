@@ -37,3 +37,12 @@ updates:
         applies-to: security-updates
         patterns:
           - "*"
+
+  # The Anchor server of the end-to-end tests: a PR per Anchor release runs the pipeline against it.
+  - package-ecosystem: "docker-compose"
+    directory: "/tests/e2e"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "anchor"

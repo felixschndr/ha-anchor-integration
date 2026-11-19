@@ -52,6 +52,6 @@ pre-commit run --all-files
 The end-to-end tests run the integration in a real Home Assistant core against a real Anchor server. They are skipped unless `ANCHOR_E2E_URL` is set:
 
 ```bash
-docker run --rm -d --name anchor-e2e -p 127.0.0.1:3999:3000 -e PG_USER=anchor -e PG_PASSWORD=password -e PG_DATABASE=anchor ghcr.io/zhfahim/anchor:latest
+docker compose -f tests/e2e/docker-compose.yml up -d
 ANCHOR_E2E_URL=http://127.0.0.1:3999 poetry run pytest tests/e2e
 ```
