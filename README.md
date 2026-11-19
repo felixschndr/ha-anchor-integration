@@ -26,7 +26,7 @@ Or add it by hand: **Settings** > **Marketplace** > **Add from link** > `felixsc
 [![Open your Home Assistant instance and start setting up Anchor.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=anchor)
 
 1. Add the integration and enter the URL of your Anchor server (the one you open in the browser, e.g. `http://anchor.local:3000`). The server shows up as a device.
-2. On the integration page, select **Add note**.
+2. On the [integration page](https://my.home-assistant.io/redirect/integration/?domain=anchor), select **Add note**.
 3. Paste an API token of the Anchor user whose note you want. Each user creates their token in Anchor under **Settings**.
 4. Pick a note. It needs at least one checkbox line.
 
