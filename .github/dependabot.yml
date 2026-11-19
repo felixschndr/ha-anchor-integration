@@ -1,0 +1,39 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 3 # Prevent supply chain attacks.
+    # Assignment happens in .github/workflows/dependabot-auto-merge.yml
+    labels:
+      - "dependencies"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 3
+    labels:
+      - "dependencies"
+      - "github-actions"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
